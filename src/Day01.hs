@@ -6,7 +6,7 @@ module Day01
 where
 
 import           Data.Text (Text)
-import qualified Data.Text as T (pack, uncons)
+import qualified Data.Text as T (uncons)
 import           Lib       (DayAnswer, PartAnswer, eitherIntToAnswer)
 
 solve :: Text -> DayAnswer

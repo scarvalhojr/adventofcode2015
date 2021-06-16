@@ -7,7 +7,7 @@ where
 
 import           Data.List (sort)
 import           Data.Text (Text)
-import qualified Data.Text as T (lines, pack, split, uncons, unpack)
+import qualified Data.Text as T (lines, split, unpack)
 import           Lib       (DayAnswer, PartAnswer, intToAnswer, invalidInput)
 import           Text.Read (readMaybe)
 
