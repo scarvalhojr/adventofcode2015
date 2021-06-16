@@ -7,13 +7,13 @@ where
 
 import           Data.Text (Text)
 import qualified Data.Text as T (pack, uncons)
-import           Lib       (DayAnswer, PartAnswer)
+import           Lib       (DayAnswer, PartAnswer, eitherIntToAnswer)
 
 solve :: Text -> DayAnswer
 solve input = (part1 input, part2 input)
 
 part1 :: Text -> PartAnswer
-part1 = fmap (T.pack . show) . level
+part1 = eitherIntToAnswer . level
 
 level :: Text -> Either Text Int
 level = count 0
@@ -22,10 +22,10 @@ level = count 0
       Just ('(', xs) -> count (c + 1) xs
       Just (')', xs) -> count (c - 1) xs
       Nothing        -> Right c
-      _              -> Left "Invalid input"
+      _              -> Left "Unexpected character in the input"
 
 part2 :: Text -> PartAnswer
-part2 = fmap (T.pack . show) . position (-1)
+part2 = eitherIntToAnswer . position (-1)
 
 position :: Int -> Text -> Either Text Int
 position target = count 0 0
@@ -36,4 +36,4 @@ position target = count 0 0
         Just ('(', xs) -> count (level + 1) (pos + 1) xs
         Just (')', xs) -> count (level - 1) (pos + 1) xs
         Nothing        -> Left "Not found"
-        _              -> Left "Invalid input"
+        _              -> Left "Unexpected character in the input"

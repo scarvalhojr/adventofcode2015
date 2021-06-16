@@ -5,6 +5,7 @@ module Main where
 import           Data.Text          (Text)
 import qualified Data.Text.IO       as TIO (putStrLn, readFile)
 import           Day01              (solve)
+import           Day02              (solve)
 import           Fmt                (fmt, (+|), (|+))
 import           Lib                (DayAnswer, PartAnswer)
 import           System.Environment (getArgs)
@@ -31,6 +32,7 @@ run day filename = do
 
 runDay :: Int -> Text -> DayAnswer
 runDay 1 input = Day01.solve input
+runDay 2 input = Day02.solve input
 runDay _ _     = (Left "Not implemented", Left "Not implemented")
 
 report :: DayAnswer -> IO ()
