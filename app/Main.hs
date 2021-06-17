@@ -54,15 +54,15 @@ run day filename = do
       usage
 
 runDay :: Int -> Text -> DayAnswer
-runDay 1 input = Day01.solve input
-runDay 2 input = Day02.solve input
-runDay 3 input = Day03.solve input
-runDay 4 input = Day04.solve input
-runDay 5 input = Day05.solve input
-runDay 6 input = Day06.solve input
-runDay 7 input = Day07.solve input
-runDay 8 input = Day08.solve input
-runDay 9 input = Day09.solve input
+runDay 1 input  = Day01.solve input
+runDay 2 input  = Day02.solve input
+runDay 3 input  = Day03.solve input
+runDay 4 input  = Day04.solve input
+runDay 5 input  = Day05.solve input
+runDay 6 input  = Day06.solve input
+runDay 7 input  = Day07.solve input
+runDay 8 input  = Day08.solve input
+runDay 9 input  = Day09.solve input
 runDay 10 input = Day10.solve input
 runDay 11 input = Day11.solve input
 runDay 12 input = Day12.solve input
@@ -79,7 +79,7 @@ runDay 22 input = Day22.solve input
 runDay 23 input = Day23.solve input
 runDay 24 input = Day24.solve input
 runDay 25 input = Day25.solve input
-runDay _ _     = (Left "Invalid day", Left "Invalid day")
+runDay _ _      = (Left "Invalid day", Left "Invalid day")
 
 report :: DayAnswer -> IO ()
 report (answer1, answer2) =

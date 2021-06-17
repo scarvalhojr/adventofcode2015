@@ -14,11 +14,13 @@ type PartAnswer = Either Text Text
 
 type DayAnswer = (PartAnswer, PartAnswer)
 
+invalidInput :: DayAnswer
+invalidInput = (invalid, invalid)
+  where
+    invalid = Left (T.pack "Invalid input")
+
 intToAnswer :: Int -> PartAnswer
 intToAnswer = Right . T.pack . show
 
 eitherIntToAnswer :: Either Text Int -> PartAnswer
 eitherIntToAnswer = fmap (T.pack . show)
-
-invalidInput :: PartAnswer
-invalidInput = Left $ T.pack "Invalid input"

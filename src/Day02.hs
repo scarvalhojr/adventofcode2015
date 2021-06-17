@@ -17,7 +17,7 @@ solve :: Text -> DayAnswer
 solve text =
   case parseInput text of
     Just boxes -> (part1 boxes, part2 boxes)
-    _          -> (invalidInput, invalidInput)
+    _          -> invalidInput
 
 parseInput :: Text -> Maybe [Box]
 parseInput = mapM parseBox . T.lines
