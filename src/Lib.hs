@@ -1,13 +1,15 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Lib
   ( Answer(..)
   , DayResult
   , PartResult
   , invalidInput
+  , maybeToResult
   )
 where
 
 import           Data.Text (Text)
-import qualified Data.Text as T (pack)
 
 data Answer
   = IntAnswer Int
@@ -23,4 +25,8 @@ type DayResult = (PartResult, PartResult)
 invalidInput :: DayResult
 invalidInput = (invalid, invalid)
   where
-    invalid = Left (T.pack "Invalid input")
+    invalid = Left "Invalid input"
+
+maybeToResult :: Maybe Answer -> PartResult
+maybeToResult (Just answer) = Right answer
+maybeToResult Nothing       = Left "Not found"

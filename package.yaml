@@ -21,9 +21,12 @@ description:         Please see the README on GitHub at <https://github.com/scar
 
 dependencies:
 - base >= 4.7 && < 5
-- text >=1.2 && <1.3
-- fmt >=0.5 && <0.7
+- bytestring
 - containers
+- cryptonite
+- fmt >=0.5 && <0.7
+- text >=1.2 && <1.3
+- utf8-string
 
 library:
   source-dirs: src
