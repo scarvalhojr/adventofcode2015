@@ -1,19 +1,19 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Day02
-  ( solve,
+  ( solve
   )
 where
 
 import           Data.List (sort)
 import           Data.Text (Text)
 import qualified Data.Text as T (lines, split, unpack)
-import           Lib       (DayAnswer, PartAnswer, intToAnswer, invalidInput)
+import           Lib       (Answer (..), DayResult, PartResult, invalidInput)
 import           Text.Read (readMaybe)
 
 data Box = Box Int Int Int
 
-solve :: Text -> DayAnswer
+solve :: Text -> DayResult
 solve text =
   case parseInput text of
     Just boxes -> (part1 boxes, part2 boxes)
@@ -31,8 +31,8 @@ parseBox text =
     numbers = T.split (== 'x') text
     values  = mapM (readMaybe . T.unpack) numbers
 
-part1 :: [Box] -> PartAnswer
-part1 = intToAnswer . sum . map paper
+part1 :: [Box] -> PartResult
+part1 = Right . IntAnswer . sum . map paper
 
 paper :: Box -> Int
 paper (Box l w h) = 2 * lw + 2 * lh + 2 * wh + slack
@@ -42,8 +42,8 @@ paper (Box l w h) = 2 * lw + 2 * lh + 2 * wh + slack
     wh = w * h
     slack = min lw (min lh wh)
 
-part2 :: [Box] -> PartAnswer
-part2 = intToAnswer . sum . map ribbon
+part2 :: [Box] -> PartResult
+part2 = Right . IntAnswer . sum . map ribbon
 
 ribbon :: Box -> Int
 ribbon (Box l w h) = perim + vol

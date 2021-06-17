@@ -1,18 +1,18 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Day25
-  ( solve,
+  ( solve
   )
 where
 
 import           Data.Text (Text)
-import           Lib       (DayAnswer, PartAnswer)
+import           Lib       (Answer (..), DayResult, PartResult)
 
-solve :: Text -> DayAnswer
+solve :: Text -> DayResult
 solve _ = (part1, part2)
 
-part1 :: PartAnswer
+part1 :: PartResult
 part1 = Left "Not implemented"
 
-part2 :: PartAnswer
+part2 :: PartResult
 part2 = Left "Not implemented"

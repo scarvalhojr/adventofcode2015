@@ -1,26 +1,26 @@
 module Lib
-  ( PartAnswer,
-    DayAnswer,
-    eitherIntToAnswer,
-    intToAnswer,
-    invalidInput,
+  ( Answer(..)
+  , DayResult
+  , PartResult
+  , invalidInput
   )
 where
 
 import           Data.Text (Text)
 import qualified Data.Text as T (pack)
 
-type PartAnswer = Either Text Text
+data Answer
+  = IntAnswer Int
+  | StringAnswer String
 
-type DayAnswer = (PartAnswer, PartAnswer)
+instance Show Answer where
+    show (IntAnswer val)    = show val
+    show (StringAnswer val) = val
 
-invalidInput :: DayAnswer
+type PartResult = Either Text Answer
+type DayResult = (PartResult, PartResult)
+
+invalidInput :: DayResult
 invalidInput = (invalid, invalid)
   where
     invalid = Left (T.pack "Invalid input")
-
-intToAnswer :: Int -> PartAnswer
-intToAnswer = Right . T.pack . show
-
-eitherIntToAnswer :: Either Text Int -> PartAnswer
-eitherIntToAnswer = fmap (T.pack . show)

@@ -1,31 +1,29 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Day01
-  ( solve,
+  ( solve
   )
 where
 
 import           Data.Text (Text)
 import qualified Data.Text as T (uncons)
-import           Lib       (DayAnswer, PartAnswer, eitherIntToAnswer)
+import           Lib       (Answer (..), DayResult, PartResult)
 
-solve :: Text -> DayAnswer
+solve :: Text -> DayResult
 solve input = (part1 input, part2 input)
 
-part1 :: Text -> PartAnswer
-part1 = eitherIntToAnswer . level
+part1 :: Text -> PartResult
+part1 = fmap IntAnswer . levelFrom 0
 
-level :: Text -> Either Text Int
-level = count 0
-  where
-    count c text = case T.uncons text of
-      Just ('(', xs) -> count (c + 1) xs
-      Just (')', xs) -> count (c - 1) xs
-      Nothing        -> Right c
-      _              -> Left "Unexpected character in the input"
+levelFrom :: Int -> Text -> Either Text Int
+levelFrom level text = case T.uncons text of
+  Just ('(', xs) -> levelFrom (level + 1) xs
+  Just (')', xs) -> levelFrom (level - 1) xs
+  Nothing        -> Right level
+  _              -> Left "Unexpected character in the input"
 
-part2 :: Text -> PartAnswer
-part2 = eitherIntToAnswer . position (-1)
+part2 :: Text -> PartResult
+part2 = fmap IntAnswer . position (-1)
 
 position :: Int -> Text -> Either Text Int
 position target = count 0 0
