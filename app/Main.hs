@@ -30,7 +30,7 @@ import           Day22              (solve)
 import           Day23              (solve)
 import           Day24              (solve)
 import           Day25              (solve)
-import           Fmt                (fmt, (+|), (|+))
+import           Fmt                (build, fmt, nameF, (+|), (|+))
 import           Lib                (Answer (..), DayResult, PartResult)
 import           System.Environment (getArgs)
 import           Text.Read          (readMaybe)
@@ -64,14 +64,12 @@ run day filename = do
       usage
 
 report :: DayResult -> IO ()
-report (answer1, answer2) =
-  fmt $
-    "Part 1: " +| formatAnswer answer1 |+
-    "\nPart 2: " +| formatAnswer answer2 |+ "\n"
-
-formatAnswer :: PartResult -> Text
-formatAnswer (Left error)   = "Error: " +| error |+ ""
-formatAnswer (Right answer) = T.pack $ show answer
+report (answer1, answer2) = do
+  fmt $ nameF "Part 1" (format answer1)
+  fmt $ nameF "Part 2" (format answer2)
+  where
+    format (Left error)   = "Error: " +| error |+ ""
+    format (Right answer) = build (show answer)
 
 usage :: IO ()
 usage = do
