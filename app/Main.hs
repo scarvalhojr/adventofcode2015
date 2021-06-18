@@ -4,7 +4,7 @@ module Main where
 
 import           Data.Text          (Text)
 import qualified Data.Text          as T (pack)
-import qualified Data.Text.IO       as TIO (putStrLn, readFile)
+import qualified Data.Text.IO       as TIO (readFile)
 import           Day01              (solve)
 import           Day02              (solve)
 import           Day03              (solve)
@@ -30,14 +30,15 @@ import           Day22              (solve)
 import           Day23              (solve)
 import           Day24              (solve)
 import           Day25              (solve)
-import           Fmt                (build, fmt, nameF, (+|), (|+))
+import           Fmt                (build, fmt, fmtLn, nameF, (+|), (|+))
 import           Lib                (Answer (..), DayResult, PartResult)
 import           System.Environment (getArgs)
 import           Text.Read          (readMaybe)
+import           TextShow           (showb, TextShow)
 
 main :: IO ()
 main = do
-  putStrLn "Advent of Code 2015"
+  fmtLn "Advent of Code 2015"
   args <- getArgs
   case args of
     [day, filename] -> run day filename
@@ -47,7 +48,7 @@ run :: String -> FilePath -> IO ()
 run day filename = do
   case readMaybe day :: Maybe Int of
     Just number | number >= 1 && number <= 25 -> do
-      putStrLn $ "Day " ++ show number
+      fmtLn $ "Day " +| number |+ ""
       input <- TIO.readFile filename
       report $ solver number input
       where
@@ -60,7 +61,7 @@ run day filename = do
           , Day21.solve, Day22.solve, Day23.solve, Day24.solve, Day25.solve
           ]
     _ -> do
-      putStrLn "Error: invalid day"
+      fmtLn "Error: invalid day"
       usage
 
 report :: DayResult -> IO ()
@@ -69,8 +70,8 @@ report (answer1, answer2) = do
   fmt $ nameF "Part 2" (format answer2)
   where
     format (Left error)   = "Error: " +| error |+ ""
-    format (Right answer) = build (show answer)
+    format (Right answer) = showb answer
 
 usage :: IO ()
 usage = do
-  putStrLn "Usage: aoc <day number> <input file name>"
+  fmtLn "Usage: aoc <day number> <input file name>"

@@ -26,6 +26,7 @@ dependencies:
 - cryptonite
 - fmt >=0.5 && <0.7
 - text >=1.2 && <1.3
+- text-show
 - utf8-string
 
 library:

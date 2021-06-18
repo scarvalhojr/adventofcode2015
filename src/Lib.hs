@@ -10,14 +10,15 @@ module Lib
 where
 
 import           Data.Text (Text)
+import           TextShow (fromText, showb, TextShow)
 
 data Answer
   = IntAnswer Int
-  | StringAnswer String
+  | TextAnswer Text
 
-instance Show Answer where
-    show (IntAnswer val)    = show val
-    show (StringAnswer val) = val
+instance TextShow Answer where
+  showb (IntAnswer val)    = showb val
+  showb (TextAnswer val)   = fromText val
 
 type PartResult = Either Text Answer
 type DayResult = (PartResult, PartResult)

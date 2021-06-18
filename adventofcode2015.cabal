@@ -62,6 +62,7 @@ library
     , cryptonite
     , fmt >=0.5 && <0.7
     , text ==1.2.*
+    , text-show
     , utf8-string
   default-language: Haskell2010
 
@@ -80,6 +81,7 @@ executable aoc2015
     , cryptonite
     , fmt >=0.5 && <0.7
     , text ==1.2.*
+    , text-show
     , utf8-string
   default-language: Haskell2010
 
@@ -99,5 +101,6 @@ test-suite adventofcode2015-test
     , cryptonite
     , fmt >=0.5 && <0.7
     , text ==1.2.*
+    , text-show
     , utf8-string
   default-language: Haskell2010
